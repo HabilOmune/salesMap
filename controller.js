@@ -14,7 +14,7 @@ var survivalequip = angular.module('survivalequip', ['ui.bootstrap', 'backand','
 
 survivalequip.controller('productsCtrl', function ($scope, $http, $rootScope, $timeout,Backand,uiGmapGoogleMapApi) {
 
-$scope.map = { 
+$rootScope.map = { 
     center: {
          latitude:-1.292066,
          longitude: 36.821946
@@ -31,17 +31,10 @@ $rootScope.poly = [
                     color: '#6060FB',
                     weight: 3
                 },
-                editable: true,
-                draggable: true,
+                editable: false,
+                draggable: false,
                 geodesic: true,
                 visible: true,
-                icons: [{
-                    icon: {
-                        path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW
-                    },
-                    offset: '25px',
-                    repeat: '50px'
-                }]
             }
         ];
 
@@ -49,45 +42,6 @@ $rootScope.poly = [
 
 
 
-
- $scope.polylines = [
-            {
-                id: 1,
-                path: [
-                    {
-                        latitude: -1.292686,
-                        longitude: 36.820963
-                    },
-                    {
-                        latitude: -1.292140,
-                        longitude: 36.822599
-                    },
-                    {
-                        latitude: -1.291442,
-                        longitude: 36.823457
-                    }
-                ],
-                stroke: {
-                    color: '#6060FB',
-                    weight: 3
-                },
-                editable: true,
-                draggable: true,
-                geodesic: true,
-                visible: true,
-                icons: [{
-                    icon: {
-                        path: google.maps.SymbolPath.BACKWARD_OPEN_ARROW
-                    },
-                    offset: '25px',
-                    repeat: '50px'
-                }]
-            }
-        ];
-
-
-
-console.log($scope.polylines)
 
  $scope.users = [];
  $http ({
@@ -133,11 +87,19 @@ for(x=0 ;x<length ;x++)
 {
 
 $rootScope.poly[0].path.push(data[x]);
+
+
+
+var newCenter = $rootScope.poly[0].path[1];
+var s = JSON.stringify(newCenter);
+sessionStorage.setItem("center" , s);
 }
+var cent = sessionStorage.getItem("center");
+var cleanCen = JSON.parse(cent);
+//console.log(cleanCen);
 
-
-console.log($rootScope.poly)
-
+$rootScope.map.center = null;
+$rootScope.map.center = cleanCen;
 });
 
 
