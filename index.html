@@ -39,9 +39,27 @@
 
 <div class="col-sm-9">
 <ui-gmap-google-map center='map.center' zoom='map.zoom'>
-        <ui-gmap-polyline ng-repeat="p in poly" path="p.path" stroke="p.stroke" visible='p.visible'
+                  <ui-gmap-polyline ng-repeat="p in poly" path="p.path" stroke="p.stroke" visible='p.visible'
                   geodesic='p.geodesic' fit="true" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
-    </ui-gmap-google-map>
+<!--
+        <ui-gmap-markers models="marker" coords="'self'" icon="'icon'">
+            <ui-gmap-windows show="show">
+                <div ng-non-bindable>{{id}}</div>
+            </ui-gmap-windows>
+        </ui-gmap-markers>
+-->
+
+        <ui-gmap-markers models="marker" coords="'self'" icon="'icon'" click="onClick">
+            <ui-gmap-windows show="show">
+                <div ng-non-bindable>
+                    <h5>{{date}}<h5>
+                     <h6>Time: Time Here</h6>
+                </div>
+            </ui-gmap-windows>
+        </ui-gmap-markers>
+
+       </ui-gmap-google-map>
+
 </ui-gmap-google-map>
 
 
