@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#333399">
+    <title>Welcome</title>
+
+
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="customcss/style.css" rel="stylesheet" />
+
+
+</head>
+
+<body ng-app="survivalequip" data-spy="scroll" data-target=".navbar" data-offset="50" ng-controller="productsCtrl">
+    <nav class="navbar navbar-default">
+    </nav>
+<div class="container">
+
+ <div class="row">
+     <div class="col-sm-offset-4 col-sm-4">
+          <input type="date" class="form-control" ng-model="selectedDate" placeholder="yyyy-MM-dd" ng-change="changedDate()" >
+     </div>
+ </div>
+<br>
+
+    <div class="col-sm-3">
+  <ul class="nav nav-pills nav-stacked">
+      
+  <li ng-repeat="person in users" ng-click="userSelected(person)"><a>{{person.firstName}}</a></li>
+ </ul>
+    </div>
+
+
+<div class="col-sm-9">
+<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+        <ui-gmap-polyline ng-repeat="p in poly" path="p.path" stroke="p.stroke" visible='p.visible'
+                  geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'></ui-gmap-polyline>
+    </ui-gmap-google-map>
+</ui-gmap-google-map>
+
+
+</div>
+</div>
+</body>
+
+<script src="angular/angular.min.js"></script>
+<script src="lodash/lodash.min.js"></script>
+<script src="angular/angular-googleMaps.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyA5TZNVFH4tm0GXFaJBtHgwQ4U0EvDsN3w"></script>
+<script src="angular/angularSimpleLogger.js"></script>
+
+<script src="backand/backand.min.js"></script>
+<script src="js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="moment/moment-with-locales.min.js"></script>
+<script src="angular/angular-ui-bs.js"></script>
+<script src="controller.js"></script>
+</html>
